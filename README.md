@@ -10,7 +10,7 @@
 
 Det är en fitnesssida. Ungefär.
 
-Mer specifikt är det ett banbrytande hälsoprogram designat av Kikki — en kvinna som inte är legitimerad dietist, inte är legitimerad personlig tränare, men som **vet**. Hon bara vet.
+Mer specifikt är det ett banbrytande hälsoprogram designat av mors — en kvinna som inte är legitimerad dietist, inte är legitimerad personlig tränare, men som **vet**. Hon bara vet.
 
 Programmet bygger på tre pelare:
 1. Stäng datorn
