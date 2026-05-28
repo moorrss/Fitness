@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKKI'S FAT FITNESS</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Permanent+Marker&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #f5f0e8;
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .stripes {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #e84c1e 0 40px, #f5c842 40px 80px, #e84c1e 80px 120px);
+  }
+
+  .stripes-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #f5c842 0 40px, #e84c1e 40px 80px, #f5c842 80px 120px);
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+  }
+  .blob-1 { width: 400px; height: 400px; background: #e84c1e; top: -100px; left: -100px; }
+  .blob-2 { width: 300px; height: 300px; background: #f5c842; bottom: 0; right: -50px; }
+
+  .logo-area {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: dropin 0.8s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes dropin {
+    from { transform: translateY(-60px) rotate(-3deg); opacity: 0; }
+    to { transform: translateY(0) rotate(-1deg); opacity: 1; }
+  }
+
+  .logo-sub {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: #f5c842;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .logo-main {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: #f5f0e8;
+    text-shadow: 4px 4px 0 #e84c1e;
+  }
+
+  .logo-main span {
+    color: #e84c1e;
+    text-shadow: 4px 4px 0 #f5c842;
+  }
+
+  .logo-tagline {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #f5c842;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .hero-body {
+    margin-top: 2.5rem;
+    text-align: center;
+    max-width: 620px;
+    position: relative;
+    z-index: 2;
+    animation: fadein 1s 0.3s both;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-body p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #c5bfb2;
+    font-weight: 400;
+  }
+
+  .hero-body strong {
+    color: #f5f0e8;
+    font-weight: 700;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    background: #e84c1e;
+    color: #f5f0e8;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transform: rotate(-1.5deg);
+    transition: transform 0.15s, background 0.15s;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+
+  .cta-btn:hover {
+    transform: rotate(0deg) scale(1.05);
+    background: #f5c842;
+    color: #0a0a0a;
+  }
+
+  .section {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    color: #f5f0e8;
+    text-shadow: 3px 3px 0 #e84c1e;
+    margin-bottom: 0.3rem;
+  }
+
+  .divider {
+    height: 4px;
+    width: 80px;
+    background: #f5c842;
+    margin: 1rem 0 2rem;
+  }
+
+  .walk-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .step-card {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    padding: 1.5rem;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .step-card:hover {
+    border-color: #e84c1e;
+    transform: translateY(-3px);
+  }
+
+  .step-num {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 3rem;
+    color: #e84c1e;
+    line-height: 1;
+    opacity: 0.3;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
+
+  .step-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #f5c842;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-card p {
+    font-size: 1rem;
+    color: #a09a8e;
+    line-height: 1.5;
+  }
+
+  .menu-section {
+    background: #111;
+    border-top: 4px solid #e84c1e;
+    border-bottom: 4px solid #e84c1e;
+    padding: 5rem 2rem;
+  }
+
+  .menu-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .menu-grid { grid-template-columns: 1fr; }
+  }
+
+  .menu-bad {
+    background: #1a0d0a;
+    border: 1px solid #3d1a10;
+    padding: 1.5rem;
+    position: relative;
+    opacity: 0.6;
+  }
+
+  .menu-bad::after {
+    content: '✕ FÖRBJUDET';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 2rem;
+    color: #e84c1e;
+    opacity: 0.7;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .menu-good {
+    background: #0d1a10;
+    border: 2px solid #1e5c28;
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .menu-good::before {
+    content: '✓ GODKÄNT';
+    position: absolute;
+    top: -14px;
+    left: 1rem;
+    background: #1e5c28;
+    color: #7ef59a;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    padding: 2px 10px;
+  }
+
+  .menu-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item-name {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.4rem;
+    color: #f5f0e8;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .menu-items-list {
+    list-style: none;
+  }
+
+  .menu-items-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #1f1f1f;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: #c5bfb2;
+  }
+
+  .menu-items-list li .cal {
+    color: #e84c1e;
+    font-weight: 700;
+  }
+
+  .menu-good .menu-items-list li .cal {
+    color: #7ef59a;
+  }
+
+  .calcount {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #2a2a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .calcount .total-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .calcount .total-val {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.8rem;
+  }
+
+  .menu-bad .total-val { color: #e84c1e; }
+  .menu-good .total-val { color: #7ef59a; }
+
+  .walk-calc {
+    margin-top: 4rem;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    padding: 2rem;
+  }
+
+  .walk-calc h3 {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #f5c842;
+    margin-bottom: 1.5rem;
+  }
+
+  .calc-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .calc-row label {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    min-width: 130px;
+  }
+
+  .calc-row input[type=range] {
+    flex: 1;
+    min-width: 120px;
+    accent-color: #e84c1e;
+  }
+
+  .calc-row .val {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.2rem;
+    color: #f5f0e8;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .result-box {
+    background: #161616;
+    border: 1px solid #e84c1e;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .result-box p {
+    font-size: 1.1rem;
+    color: #c5bfb2;
+    line-height: 1.6;
+  }
+
+  .result-box strong {
+    color: #f5c842;
+    font-weight: 900;
+  }
+
+  .testimonials {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .testi-card {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .testi-card:hover { border-color: #f5c842; }
+
+  .testi-quote {
+    font-size: 1.05rem;
+    color: #c5bfb2;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testi-name {
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f5c842;
+  }
+
+  .testi-stars {
+    color: #e84c1e;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  footer {
+    background: #060606;
+    border-top: 4px solid #f5c842;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 1.8rem;
+    color: #f5f0e8;
+    text-shadow: 2px 2px 0 #e84c1e;
+    margin-bottom: 0.5rem;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+    color: #555;
+    max-width: 400px;
+    margin: 0.3rem auto 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #444;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stripes"></div>
+  <div class="stripes-bottom"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="logo-area">
+    <p class="logo-sub">Välkommen till</p>
+    <h1 class="logo-main">KIKKI'S<br><span>FAT</span><br>FITNESS</h1>
+    <p class="logo-tagline">Powerwalk hem. Ät lite. Skäm dig lagom.</p>
+  </div>
+
+  <div class="hero-body">
+    <p>
+      Du jobbar hårt. Du förtjänar en belöning. Men behöver du <strong>verkligen</strong> beställa hela menyn? Kikki säger nej. Kikki säger: <strong>gå hem. Ta bara det lilla.</strong>
+    </p>
+    <a class="cta-btn" href="#program">Börja din resa nu →</a>
+  </div>
+
+  <div class="scroll-hint">↓ scrolla ner ↓</div>
+</section>
+
+
+<!-- PROGRAM -->
+<section class="section" id="program">
+  <p class="logo-sub" style="font-family:'Permanent Marker',cursive; color:#f5c842; font-size:0.95rem; letter-spacing:0.2em; text-transform:uppercase;">Det 3-stegs programmet</p>
+  <h2 class="section-title">Kikkis metod</h2>
+  <div class="divider"></div>
+
+  <div class="walk-steps">
+    <div class="step-card">
+      <span class="step-num">01</span>
+      <h3>Stäng datorn</h3>
+      <p>Det räcker. Du har gjort nog idag. Outlook kan vänta. Kvartalssiffrorna kan vänta. Ditt liv väntar inte.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-num">02</span>
+      <h3>Powerwalk hem</h3>
+      <p>Inte promenera. Inte jogga. POWERWALK. Armar pumpande. Blicken framåt. Folk tittar. Det är meningen.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-num">03</span>
+      <h3>Beställ lagom</h3>
+      <p>Max 10 mozzarellasticks ELLER 5 churros. Inte båda. Inte en hel meny. Kikki ser dig. Kikki vet.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- MENY-JÄMFÖRELSE -->
+<div class="menu-section">
+  <div class="menu-inner">
+    <p class="logo-sub" style="font-family:'Permanent Marker',cursive; color:#f5c842; font-size:0.95rem; letter-spacing:0.2em; text-transform:uppercase;">Kikkis dom</p>
+    <h2 class="section-title">Acceptabelt vs. Katastrof</h2>
+    <div class="divider"></div>
+
+    <div class="menu-grid">
+      <!-- BAD -->
+      <div class="menu-bad">
+        <div class="menu-label">Förbjudet av Kikki</div>
+        <div class="menu-item-name">Hela menyn</div>
+        <div class="menu-item-desc">Vad tänkte du? Det är inte en buffé. Det är ett steg mot avgrunden.</div>
+        <ul class="menu-items-list">
+          <li>10 mozzarellasticks <span class="cal">820 kcal</span></li>
+          <li>5 churros <span class="cal">470 kcal</span></li>
+          <li>Dippsås (3 st) <span class="cal">240 kcal</span></li>
+          <li>Läsk, stor <span class="cal">320 kcal</span></li>
+          <li>"En till churro" <span class="cal">94 kcal</span></li>
+        </ul>
+        <div class="calcount">
+          <span class="total-label">Totalt</span>
+          <span class="total-val">1 944 kcal</span>
+        </div>
+      </div>
+
+      <!-- GOOD -->
+      <div class="menu-good">
+        <div class="menu-label">Kikkigodkänt™</div>
+        <div class="menu-item-name">Det lilla</div>
+        <div class="menu-item-desc">Du powerwallade hem. Du förtjänar detta. Inte mer. Men detta, ja.</div>
+        <ul class="menu-items-list">
+          <li>10 mozzarellasticks <span class="cal">820 kcal</span></li>
+          <li><em style="color:#555">— eller istället —</em> <span></span></li>
+          <li>5 churros <span class="cal">470 kcal</span></li>
+          <li>Vatten <span class="cal">0 kcal</span></li>
+        </ul>
+        <div class="calcount">
+          <span class="total-label">Totalt max</span>
+          <span class="total-val">820 kcal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KALKYLATOR -->
+    <div class="walk-calc">
+      <h3>⚡ Powerwalkkalkylator</h3>
+
+      <div class="calc-row">
+        <label>Distans (km)</label>
+        <input type="range" id="dist" min="1" max="15" value="5" step="1">
+        <span class="val" id="dist-out">5 km</span>
+      </div>
+      <div class="calc-row">
+        <label>Din vikt (kg)</label>
+        <input type="range" id="vikt" min="50" max="150" value="80" step="5">
+        <span class="val" id="vikt-out">80 kg</span>
+      </div>
+
+      <div class="result-box" id="result-box">
+        <p>Du förbränner ca <strong id="burn-cal">280 kcal</strong> på en <strong id="burn-dist">5 km</strong> powerwalk. Det räcker för <strong id="mozz-count">3.4</strong> mozzarellasticks. <span id="verdict"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="logo-sub" style="font-family:'Permanent Marker',cursive; color:#f5c842; font-size:0.95rem; letter-spacing:0.2em; text-transform:uppercase;">Framgångshistorier</p>
+  <h2 class="section-title">De som lyssnade på Kikki</h2>
+  <div class="divider"></div>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Jag brukade beställa 3 rätter efter jobbet. Nu tar jag bara 10 mozzarellasticks och powerwalkar hem 4 km. Mina grannar trodde jag var galen. Nu är de avundsjuka."</p>
+      <div class="testi-name">— Björn-Anders, 44, Redovisningschef</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Kikki ringde mig en gång klockan 22 och frågade varför jag beställt churros OCH mozz. Jag vet inte hur hon vet. Men jag gör det aldrig igen."</p>
+      <div class="testi-name">— Gunilla, 38, HR-specialist</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★☆☆</div>
+      <p class="testi-quote">"Tre stjärnor för att jag fortfarande missar churros. Men powerwalken är faktiskt ganska skön. Armarna gör ont men det är väl meningen."</p>
+      <div class="testi-name">— Mattias, 51, IT-arkitekt</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KIKKI'S FAT FITNESS</div>
+  <p>Inga pengar-tillbaka-garantier. Inga ursäkter. Bara powerwalk och lagom mycket ost.</p>
+  <p style="margin-top:1rem; font-size:0.75rem; color:#333;">© 2026 Kikki's Fat Fitness AB. Alla rättigheter förbehållna. Kikki är inte legitimerad dietist. Kikki är bara Kikki.</p>
+</footer>
+
+<script>
+  const distEl = document.getElementById('dist');
+  const viktEl = document.getElementById('vikt');
+  const distOut = document.getElementById('dist-out');
+  const viktOut = document.getElementById('vikt-out');
+  const burnCal = document.getElementById('burn-cal');
+  const burnDist = document.getElementById('burn-dist');
+  const mozzCount = document.getElementById('mozz-count');
+  const verdict = document.getElementById('verdict');
+
+  function update() {
+    const d = parseInt(distEl.value);
+    const v = parseInt(viktEl.value);
+    distOut.textContent = d + ' km';
+    viktOut.textContent = v + ' kg';
+    burnDist.textContent = d + ' km';
+
+    const kcal = Math.round(d * v * 0.7);
+    burnCal.textContent = kcal + ' kcal';
+
+    const mozz = (kcal / 82).toFixed(1);
+    mozzCount.textContent = mozz;
+
+    const full = parseFloat(mozz);
+    if (full >= 10) {
+      verdict.textContent = '🎉 Du förtjänar hela 10! Kikki är stolt.';
+      verdict.style.color = '#7ef59a';
+    } else if (full >= 5) {
+      verdict.textContent = `Det blir ${Math.floor(full)} sticks. Ta det du förtjänat.`;
+      verdict.style.color = '#f5c842';
+    } else {
+      verdict.textContent = 'Gå längre nästa gång. Skärpning.';
+      verdict.style.color = '#e84c1e';
+    }
+  }
+
+  distEl.addEventListener('input', update);
+  viktEl.addEventListener('input', update);
+  update();
+</script>
+</body>
+</html>
