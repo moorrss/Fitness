@@ -1,5 +1,7 @@
 # KIKKI'S FAT FITNESS
 
+🔗 **[moorrss.github.io/Fitness](https://moorrss.github.io/Fitness)**
+
 > *"Powerwalk hem. Ät lite. Skäm dig lagom."*
 
 ---
